@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dev-log.ir | Coming Soon</title>
+    <meta
+            name="description"
+            content="dev-log.ir is coming soon — a new destination focused on emerging technologies, frontier innovation, information technology, and artificial intelligence."
+    />
+    <meta name="theme-color" content="#07111f" />
+    <style>
+        :root {
+            --bg-1: #040814;
+            --bg-2: #07111f;
+            --bg-3: #0b1b2d;
+            --primary: #61dafb;
+            --primary-2: #8b5cf6;
+            --accent: #00e5a8;
+            --text: #f5f7fb;
+            --muted: #98a7bd;
+            --card: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+            --radius: 24px;
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text);
+            background:
+                    radial-gradient(circle at 20% 20%, rgba(97, 218, 251, 0.14), transparent 28%),
+                    radial-gradient(circle at 80% 25%, rgba(139, 92, 246, 0.18), transparent 24%),
+                    radial-gradient(circle at 50% 80%, rgba(0, 229, 168, 0.12), transparent 30%),
+                    linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: auto;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.22;
+            pointer-events: none;
+        }
+
+        body::before {
+            top: -120px;
+            left: -120px;
+            background: var(--primary);
+        }
+
+        body::after {
+            right: -120px;
+            bottom: -120px;
+            background: var(--primary-2);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image:
+                    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 28px 20px 40px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background:
+                    linear-gradient(135deg, rgba(97,218,251,0.25), rgba(139,92,246,0.25)),
+                    rgba(255,255,255,0.08);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-mark::before {
+            content: "</>";
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text h1 {
+            font-size: 1rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .brand-text p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #d8e5f7;
+            font-size: 0.88rem;
+            backdrop-filter: blur(12px);
+            white-space: nowrap;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-main {
+            padding: 42px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-main::before {
+            content: "";
+            position: absolute;
+            inset: auto -60px -60px auto;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(97,218,251,0.18), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(97,218,251,0.2);
+            background: rgba(97,218,251,0.08);
+            color: #cbefff;
+            font-size: 0.84rem;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(0,229,168,0.12);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.75; }
+        }
+
+        .hero-main h2 {
+            font-size: clamp(2rem, 5vw, 4.2rem);
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 18px;
+            max-width: 10ch;
+        }
+
+        .hero-main h2 .gradient {
+            background: linear-gradient(90deg, var(--primary), #b6f0ff 35%, #d5c1ff 72%, var(--primary-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-main p.lead {
+            font-size: 1.06rem;
+            line-height: 1.8;
+            color: #d7e2f1;
+            max-width: 64ch;
+            margin-bottom: 26px;
+        }
+
+        .highlight {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .feature-item h3 {
+            font-size: 0.98rem;
+            margin-bottom: 8px;
+            color: #f3f8ff;
+        }
+
+        .feature-item p {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        .hero-side {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .countdown-card {
+            padding: 22px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .countdown-card h3 {
+            font-size: 1rem;
+            color: #eef5ff;
+            margin-bottom: 10px;
+        }
+
+        .countdown-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .time-box {
+            padding: 16px 10px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(7, 17, 31, 0.6);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .time-box .num {
+            display: block;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .time-box .label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+        }
+
+        .unknown-launch {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(97,218,251,0.08);
+            border: 1px solid rgba(97,218,251,0.14);
+            color: #d9f5ff;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .info-card {
+            padding: 22px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .info-card h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #f3f8ff;
+        }
+
+        .info-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.75;
+        }
+
+        .topics {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic {
+            padding: 9px 12px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: #e6f3ff;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer {
+            margin-top: 28px;
+            padding: 20px 6px 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #cceeff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-main {
+                padding: 32px 24px;
+            }
+
+            .hero-side {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 18px 14px 28px;
+            }
+
+            .topbar {
+                margin-bottom: 18px;
+            }
+
+            .status-badge {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-main h2 {
+                max-width: 100%;
+            }
+
+            .hero-main p.lead {
+                font-size: 0.98rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .time-box {
+                padding: 14px 10px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+
+<div class="container">
+    <header class="topbar">
+        <a href="#" class="brand" aria-label="dev-log.ir">
+            <div class="brand-mark"></div>
+            <div class="brand-text">
+                <h1>dev-log.ir</h1>
+                <p>Technology • Frontier Research • AI</p>
+            </div>
+        </a>
+
+        <div class="status-badge">Launching soon — building something exceptional</div>
+    </header>
+
+    <main class="hero">
+        <section class="panel hero-main">
+            <div class="eyebrow">
+                <span class="dot"></span>
+                Next-generation technology insight platform
+            </div>
+
+            <h2>
+                The future of <span class="gradient">technology</span> is almost here.
+            </h2>
+
+            <p class="lead">
+                <span class="highlight">dev-log.ir</span> is an upcoming digital space dedicated to
+                <span class="highlight">emerging technologies</span>, the
+                <span class="highlight">edge of innovation</span>, advanced developments in
+                <span class="highlight">information technology</span>, and the rapidly evolving world of
+                <span class="highlight">artificial intelligence</span>.
+                <br /><br />
+                We are preparing a refined platform focused on modern ideas, technical exploration,
+                intelligent systems, and the technologies shaping what comes next.
+            </p>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Emerging Tech Focus</h3>
+                    <p>
+                        Covering breakthroughs, new paradigms, and transformative tools across the modern digital ecosystem.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3>AI & Intelligent Systems</h3>
+                    <p>
+                        Exploring machine intelligence, advanced automation, practical AI, and the evolution of smart technologies.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3>Frontier IT Perspectives</h3>
+                    <p>
+                        Highlighting architecture, infrastructure, digital engineering, and future-ready information systems.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3>Insightful Technical Content</h3>
+                    <p>
+                        Designed for curious minds interested in the cutting edge of research, engineering, and innovation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="panel hero-side">
+            <div class="countdown-card">
+                <h3>Countdown to Reveal</h3>
+                <p>
+                    The official launch date has not been publicly announced yet. Until then, the timer tracks toward a
+                    placeholder reveal moment and continuously updates the anticipation.
+                </p>
+
+                <div class="countdown" id="countdown">
+                    <div class="time-box">
+                        <span class="num" id="days">00</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="num" id="hours">00</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="num" id="minutes">00</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="num" id="seconds">00</span>
+                        <span class="label">Seconds</span>
+                    </div>
+                </div>
+
+                <div class="unknown-launch">
+                    Reveal date: <strong>Undisclosed</strong><br />
+                    Status: Curating a premium experience for technology and AI enthusiasts.
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h4>What dev-log.ir is about</h4>
+                <p>
+                    A modern destination for forward-looking content around advanced computing, AI-driven transformation,
+                    digital systems, new technology movements, and the practical future of innovation in IT.
+                </p>
+
+                <div class="topics">
+                    <span class="topic">Artificial Intelligence</span>
+                    <span class="topic">Machine Learning</span>
+                    <span class="topic">Cloud & Infrastructure</span>
+                    <span class="topic">Emerging Systems</span>
+                    <span class="topic">Future Computing</span>
+                    <span class="topic">Innovation Research</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div>© 2026 dev-log.ir — All rights reserved.</div>
+        <div>Designed for the next wave of technology exploration.</div>
+    </footer>
+</div>
+
+<script>
+    // Placeholder countdown for an undisclosed launch date.
+    // It always points to a rolling future date so the page remains active.
+    function getRollingTargetDate() {
+        const now = new Date();
+        const target = new Date(now.getTime());
+        target.setDate(target.getDate() + 21);
+        target.setHours(target.getHours() + 7);
+        target.setMinutes(target.getMinutes() + 13);
+        target.setSeconds(target.getSeconds() + 42);
+        return target;
+    }
+
+    let launchDate = getRollingTargetDate();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        let distance = launchDate.getTime() - now;
+
+        if (distance <= 0) {
+            launchDate = getRollingTargetDate();
+            distance = launchDate.getTime() - now;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
