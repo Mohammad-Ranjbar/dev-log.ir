@@ -882,3 +882,24 @@ button {
         display: none;
     }
 }
+
+.form-message {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 22px;
+}
+
+.form-message.success {
+    color: #7dd3fc;
+}
+
+.form-message.error {
+    color: #fb7185;
+}
+
+.notify-form button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
